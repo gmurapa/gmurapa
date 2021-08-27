@@ -1,0 +1,72 @@
+package incometax;
+
+import java.util.Scanner;
+
+public class IncomeTax {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        //rate of taxation
+        final double Rate1 = 0.18;
+        final double Rate2 = 0.26;
+        final double Rate3 = 0.31;
+        final double Rate4 = 0.36;
+        final double Rate5 = 0.39;
+        final double Rate6 = 0.41;
+        final double Rate7 = 0.45;
+        
+        //income brackets
+        final double ib = 7275;
+        final double ib2 = 18016.67;
+        final double ib3 = 28150;
+        final double ib4 = 38958.33;
+        final double ib5 = 51133.33;
+        final double ib6 = 65183.33;
+        final double ib7 = 138050;
+        
+        // tax per bracket
+        
+        final double tpb = (ib2-ib)* Rate1;
+        final double tpb2 = (ib3-ib2)* Rate2;
+        final double tpb3 = (ib4-ib3)* Rate3;
+        final double tpb4 = (ib5-ib4)* Rate4;
+        final double tpb5 = (ib6-ib5)* Rate5;
+        final double tpb6 = (ib7-ib6)* Rate6;
+        
+        // TODO code application logic here
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter your salary: ");
+        double income = input.nextDouble();
+        
+        //Compute tax
+        double tax = 0;
+        
+        if(income <= ib)
+            tax =income * 0;
+        else if(income > ib && income <= ib2)
+                tax = (income - ib) * Rate1;
+        else if(income > ib2 && income <= ib3)
+            tax = (income -ib2) * Rate2 + tpb;
+        else if(income > ib3 && income <= ib4)
+            tax = (income - ib3) * Rate3 + tpb + tpb2;
+        else if (income >ib4 && income <= ib5)
+            tax = (income - ib4)* Rate4 + tpb + tpb2 + tpb3;
+        else if(income > ib5 && income <= ib6)
+            tax = (income - ib5) * Rate5 + tpb + tpb2 + tpb3 + tpb4;
+        else if(income > ib6 && income <= ib7)
+            tax = (income - ib6) * Rate6 + tpb + tpb2 + tpb3 + tpb4 + tpb5;
+        else tax = (income - ib7)* Rate7 + tpb + tpb2 +tpb3 + tpb4 + tpb5 + tpb6;
+        
+        System.out.println("Your tax is: R" + tax);
+        System.out.println("Your net salary is : R" + (income -tax));
+    }
+
+    
+    }
+    }
+
+   
+  
+
